@@ -11,6 +11,11 @@
   "author": "Kenneth",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^7.1.1",
+    "node-mocks-http": "^1.12.2"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
   }
 }
