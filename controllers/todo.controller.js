@@ -19,3 +19,25 @@ exports.getTodos= async (req, res, next)=>{
     }
 }
 
+exports.getTodoById = async (req, res, next)=>{
+    try{
+        const  todoModel =  await TodoModel.findById(req.params.todoId);
+        if(todoModel){
+            res.status(200).json(todoModel);
+        } else{
+            res.status(404).send();
+        }
+    }catch(error){
+        next(error);
+    }
+
+}
+
+
+exports.updateTodo = async (req, res, next)=>{
+    TodoModel.findByIdAndUpdate(req.params.todoId, req.body,{
+        new:true,
+        useFindAndModify:false
+    })
+
+}

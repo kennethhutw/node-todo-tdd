@@ -16,7 +16,18 @@ describe(endpointUrl,()=>{
         firstTodo = response.body[0];
     })
 
+    test("GET by Id"  + endpointUrl, async () => {
+      const response = await request(app).get(endpointUrl+firstTodo._id);
+      expect(response.statusCode).toBe(200);
+      expect(response.body.title).toBe(firstTodo.title);
+      expect(response.body.done).toBe(firstTodo.done);
+    })
 
+    test("GET todo by Id but not exist"  + endpointUrl+ ":todoId", async () => {
+      const response = await request(app).get(endpointUrl+"645f52393b10a581e6841111");
+      expect(response.statusCode).toBe(404);
+
+    })
 
     it('POST ' + endpointUrl, async () => {
         const response = await request(app)
