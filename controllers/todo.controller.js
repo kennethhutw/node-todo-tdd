@@ -21,9 +21,9 @@ exports.getTodos= async (req, res, next)=>{
 
 exports.getTodoById = async (req, res, next)=>{
     try{
-        const  todoModel =  await TodoModel.findById(req.params.todoId);
-        if(todoModel){
-            res.status(200).json(todoModel);
+        const  todo =  await TodoModel.findById(req.params.todoId);
+        if(todo){
+            res.status(200).json(todo);
         } else{
             res.status(404).send();
         }
@@ -33,11 +33,23 @@ exports.getTodoById = async (req, res, next)=>{
 
 }
 
-
 exports.updateTodo = async (req, res, next)=>{
-    TodoModel.findByIdAndUpdate(req.params.todoId, req.body,{
-        new:true,
-        useFindAndModify:false
-    })
 
+  try{
+        const updateTodo = await TodoModel.findByIdAndUpdate(req.params.todoId, req.body,{
+            new:true,
+            useFindAndModify:false 
+        })
+        if(updateTodo){
+        res.status(200).json(updateTodo);
+        }
+        else{
+            res.status(404).send();
+        }
+    } catch(error) {
+        next(error);
+    }
+
+     
 }
+

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll",
-    "dev":"nodemon app.js"
+    "test": "jest  --watchAll",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "Kenneth",
